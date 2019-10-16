@@ -39,21 +39,30 @@
                         <span class="tag is-dark">{{ tasksOpen.length }}</span>
                         <!-- .length = tasksOpenが.filter関数で取得した配列の中の数を表示する -->
                     </div>
-                    <task-card v-bind:task="task" v-for="task in tasksOpen" v-bind:key="task.name"></task-card">
+                    <transition-group name="fade">
+                        <task-card v-bind:task="task" v-for="task in tasksOpen" v-bind:key="task.name"></task-card">
+                    </transition-group>
+                    <!-- transiton-groupタグでコンポーネントを囲む -->
+                    <!-- cssで設定したnameをtransiton-groupタグ内で指定する -->
+                    <!-- コンポーネントの挙動にtransitionが追加される -->
                 </div>
                 <div class="column status-2">
                     <div class="tags has-addons">
                         <span class="tag">処理中</span>
                         <span class="tag is-dark"> {{ tasksDoing.length }} </span>
                     </div>
-                    <task-card v-bind:task="task" v-for="task in tasksDoing" v-bind:key="task.name"></task-card>
+                    <transition-group name="fade">
+                        <task-card v-bind:task="task" v-for="task in tasksDoing" v-bind:key="task.name"></task-card>
+                    </transition-group>
                 </div>
                 <div class="column status-3">
                     <div class="tag has-addons">
                         <span class="tag">完了</span>
                         <span class="tag is-dark"> {{ tasksClosed.length }} </span>
                     </div>
-                    <task-card V-bind:task="task" v-for="task in tasksClosed" v-bind:key="task.name"></task-card>
+                    <transition-group name="fade">
+                        <task-card V-bind:task="task" v-for="task in tasksClosed" v-bind:key="task.name"></task-card>
+                    </transition-group>
                 </div>
             </div>
         </div>
